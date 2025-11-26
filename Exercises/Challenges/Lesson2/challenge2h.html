@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Challenge exercises 2g</title>
+  </head>
+  <body>
+    <div class="js-container"></div>
+    <script src="https://unpkg.com/supersimpledev@3.2.1/external-library.js"></script>
+    <script src="https://unpkg.com/supersimpledev/react.js"></script>
+    <script src="https://unpkg.com/supersimpledev/react-dom.js"></script>
+    <script src="https://unpkg.com/supersimpledev/babel.js"></script>
+    <script type="text/babel">
+      function ProductsDetails({ product }) {
+        return (
+          <>
+            <h2>{product.name}</h2>
+            <p>Price: {product.price}</p>
+            {product.discount && <del>Discount: {product.price}</del>}
+            {product.discount && <p>Discount: {product.discount}</p>}
+            <button>Add to Cart</button>
+          </>
+        );
+      }
+
+      function Products() {
+        const products = [
+          { name: "Cotton Socks", price: "$10.90", discount: "$5.45" },
+          { name: "Tennis balls", price: "$6.00", discount: "" },
+          { name: "Plain T-Shirts", price: "$7.99", discount: "" },
+        ];
+        return (
+          <>
+            <div>
+              <ProductsDetails product={products[0]} />
+              <ProductsDetails product={products[1]} />
+              <ProductsDetails product={products[2]} />
+            </div>
+          </>
+        );
+      }
+
+      function App() {
+        return (
+          <>
+            <Products />
+          </>
+        );
+      }
+      const container = document.querySelector(".js-container");
+      ReactDOM.createRoot(container).render(<App />);
+    </script>
+  </body>
+</html>

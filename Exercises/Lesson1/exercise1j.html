@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Challenge exercise 1i</title>
+  </head>
+  <body>
+    <div class="js-container"></div>
+    <script src="https://unpkg.com/supersimpledev@3.2.1/external-library.js"></script>
+    <script src="https://unpkg.com/supersimpledev/react.js"></script>
+    <script src="https://unpkg.com/supersimpledev/react-dom.js"></script>
+    <script src="https://unpkg.com/supersimpledev/dayjs.js"></script>
+
+    <script src="https://unpkg.com/supersimpledev/babel.js"></script>
+    <script type="text/babel">
+      const container = document.querySelector(".js-container");
+      const clock = <p>Current time: {dayjs().format('HH:mm:ss')}</p>
+      const root = ReactDOM.createRoot(container);
+      root.render(clock);
+      setInterval(() => {
+        const clock = <p>Current time: {dayjs().format('HH:mm:ss')}</p>
+        root.render(clock);
+      }, 1000);
+    </script>
+  </body>
+</html>

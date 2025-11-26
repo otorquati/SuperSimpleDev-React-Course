@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>React Basics</title>
+  </head>
+  <body>
+    <div class="js-container"></div>
+    <script src="https://unpkg.com/supersimpledev@3.2.1/external-library.js"></script>
+    <script src="https://unpkg.com/supersimpledev/react.js"></script>
+    <script src="https://unpkg.com/supersimpledev/react-dom.js"></script>
+
+    <script src="https://unpkg.com/supersimpledev/babel.js"></script>
+    <script type="text/babel">
+   
+      function App () {
+        const [name, setName] = React.useState("");
+        return (
+          <>
+            <div>
+              <input type="text" placeholder="Type a name here..." onChange={(e) => {
+                setName(e.target.value);
+              }} />
+              <>
+              {name.length < 3 ? <p>Please enter your name above.</p> : <p>Hello, {name}!</p>}
+                
+              </>
+            </div>
+          </>
+        );
+      };
+      const container = document.querySelector(".js-container");
+      ReactDOM.createRoot(container).render(<App />);
+    </script>
+  </body>
+</html>
