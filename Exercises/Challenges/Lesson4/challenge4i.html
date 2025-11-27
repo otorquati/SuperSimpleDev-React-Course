@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>React Basics</title>
+    <style>
+      body {
+        font-family: Arial;
+        margin-top: 0;
+        margin-bottom: 0;
+      }
+      .app-container {
+        display: flex;
+        height: 100vh;
+        max-width: 600px;
+        margin-left: auto;
+        margin-right: auto;
+        padding: 20px;
+        border: 1px solid #ccc;
+        border-radius: 10px;
+        align-items: center;
+        justify-content: center;
+      }
+
+      .btn {
+        margin-right: 10px;
+        margin-top: 50px;
+        background-color: rgb(25, 135, 84);
+        color: white;
+        border: none;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="js-container"></div>
+    <script src="https://unpkg.com/supersimpledev@3.2.1/external-library.js"></script>
+    <script src="https://unpkg.com/supersimpledev/react.js"></script>
+    <script src="https://unpkg.com/supersimpledev/react-dom.js"></script>
+
+    <script src="https://unpkg.com/supersimpledev/babel.js"></script>
+    <script type="text/babel">
+      /*      function ClickMeButton() {
+        const [count, setCount] = React.useState(0);
+        return (
+          <button onClick={() => setCount(count + 1)}>Clicked {count} {(count === 1 ? "time" : "times")}</button>
+        );
+      } */
+      function App() {
+        const [count, setCount] = React.useState(0);
+        const [autoClickEnable, setAutoClickEnable] = React.useState(true);
+        const buttonRef = React.useRef();
+
+        function increaseCount() {
+          setCount(count + 1);
+        }
+
+        function resetCount() {
+          setCount(0);
+        }
+
+        function autoClick() {
+          if (!autoClickEnable) return;
+          console.log({autoClickEnable});
+          setInterval(() => {
+            const buttonElem = buttonRef.current;
+            if (buttonElem) {
+              buttonElem.click();
+            }
+          }, 1000);
+        }
+
+        return (
+          <>
+            <div className="app-container">
+              <button className="btn" onClick={increaseCount} ref={buttonRef}>
+                Clicked {count} {count === 1 ? "time" : "times"}
+              </button>
+              <button className="btn" onClick={resetCount}>
+                Reset
+              </button>
+              <button className="btn" onClick={(autoClickEnable) ? autoClick : null}>
+                Auto Click
+              </button>
+              <button className="btn" onClick={() => setAutoClickEnable(!autoClickEnable)}>
+                Stop Auto Click
+              </button>
+
+            </div>
+          </>
+        );
+      }
+      const container = document.querySelector(".js-container");
+      ReactDOM.createRoot(container).render(<App />);
+    </script>
+  </body>
+</html>
