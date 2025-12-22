@@ -13,39 +13,4 @@
   text-align: center;
 }
 
-.notfoundpage-container .btn-home {
-  margin: auto 2rem;
-  padding: 0.75rem 1.5rem;
-  font-size: 1.25rem;
-  color: white;
-  background-color: gray;
-  border: none;
-  border-radius: 5px;
-  cursor: pointer;
-  text-decoration: none;
-}
 
-.notfoundpage-container .btn-home:hover {
-  background-color: green;
-  color: white;
-}
-
-.notfoundpage-header {
-  margin: auto;
-  width: 900px;
-  text-align: center;
-  margin-top: 5rem;
-  font-size: 2rem;
-  margin-bottom: 1rem;
-  background-color: green;
-}
-
-.notfoundpage-header h1 {
-  font-size: 3rem;
-  margin-bottom: 1rem;
-  color: white;
-}
-
-.notfoundpage-home-link {
-  text-decoration: none;
-}
