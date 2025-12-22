@@ -13,7 +13,14 @@
   right: 0;
   z-index: 1000;
 }
+.checkout-header .logo {
+  height: 26px;
+  margin-top: 1px;
+}
 
+.checkout-header .mobile-logo {
+  display: none;
+}
 .checkout-header .header-content {
   width: 100%;
   max-width: 1100px;
