@@ -2,7 +2,7 @@ import { Header } from "../components/Header";
 import "./CheckoutPage.css";
 import "./checkout-header.css";
 
-export function CheckoutPage({ cart }) {
+export function CheckoutPage( { cart }) {
   return (
     <>
       <title>Checkout</title>
