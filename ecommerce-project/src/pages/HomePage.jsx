@@ -2,6 +2,7 @@ import { Header } from "../components/Header.jsx";
 import "./HomePage.css";
 import axios from "axios";
 import { useEffect, useState } from "react";
+import { formatMoney } from "../utils/money.js";
 
 export function HomePage({ cart }) {
 const [products, setProducts] = useState([]);
@@ -42,7 +43,7 @@ const [products, setProducts] = useState([]);
                 </div>
 
                 <div className="product-price">
-                  ${(product.priceCents / 100).toFixed(2)}
+                  {formatMoney({ amountCents: product.priceCents })}
                 </div>
 
                 <div className="product-quantity-container">

@@ -13,7 +13,7 @@ function App() {
     /* Obtendo dados do Carrinho de Compras */
   }
   useEffect(() => {
-  axios.get("/api/cart-items").then((response) => {
+  axios.get("/api/cart-items?expand=product").then((response) => {
     setCart(response.data);
   });
 }, []);
