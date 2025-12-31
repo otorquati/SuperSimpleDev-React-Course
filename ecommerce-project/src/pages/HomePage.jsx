@@ -41,10 +41,9 @@ const [products, setProducts] = useState([]);
                     {product.rating.count}
                   </div>
                 </div>
-
-                <div className="product-price">
-                  {formatMoney({ amountCents: product.priceCents })}
-                </div>
+                  <div className="product-price">
+                    {formatMoney({ amountCents: product.priceCents })}
+                  </div>
 
                 <div className="product-quantity-container">
                   <select>
@@ -59,6 +58,7 @@ const [products, setProducts] = useState([]);
                     <option value="9">9</option>
                     <option value="10">10</option>
                   </select>
+
                 </div>
 
                 <div className="product-spacer"></div>
