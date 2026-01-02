@@ -1,8 +1,8 @@
 import { Routes, Route } from "react-router";
-import { HomePage } from "./pages/HomePage.jsx";
+import { HomePage } from "./pages/home/HomePage.jsx";
 import { CheckoutPage } from "./pages/checkout/CheckoutPage.jsx";
-import { OrdersPage } from "./pages/OrdersPage.jsx";
-import { TrackingPage } from "./pages/TrackingPage.jsx";
+import { OrdersPage } from "./pages/orders/OrdersPage.jsx";
+import { TrackingPage } from "./pages/tracking/TrackingPage.jsx";
 import axios from "axios";
 import "./App.css";
 import { useState, useEffect } from "react";
@@ -13,10 +13,10 @@ function App() {
     /* Obtendo dados do Carrinho de Compras */
   }
   useEffect(() => {
-  axios.get("/api/cart-items?expand=product").then((response) => {
-    setCart(response.data);
-  });
-}, []);
+    axios.get("/api/cart-items?expand=product").then((response) => {
+      setCart(response.data);
+    });
+  }, []);
 
   return (
     <Routes>

@@ -1,11 +1,11 @@
-import { Header } from "../components/Header";
+import { Header } from "../../components/Header";
 import "./TrackingPage.css";
 
 export function TrackingPage() {
   return (
     <>
       <title>Tracking Page</title>
-		<Header />
+      <Header />
 
       <div class="tracking-page">
         <div class="order-tracking">
