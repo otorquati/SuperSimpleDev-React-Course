@@ -3,14 +3,17 @@ import dayjs from "dayjs";
 import { useEffect, useState, Fragment } from "react";
 import { Header } from "../../components/Header";
 import { formatMoney } from "../../utils/money";
+import { Link } from "react-router";
 import "./OrdersPage.css";
 export function OrdersPage({ cart }) {
   const [orders, setOrders] = useState([]);
 
   useEffect(() => {
-    axios.get("/api/orders?expand=products").then((response) => {
+    const getOrdersData = async () => { 
+      const response = await axios.get("/api/orders?expand=products");
       setOrders(response.data);
-    });
+    };
+    getOrdersData();
   }, []);
 
   return (
@@ -28,7 +31,7 @@ export function OrdersPage({ cart }) {
                   <div className="order-header-left-section">
                     <div className="order-date">
                       <div className="order-header-label">Order Placed:</div>
-                      <div>{dayjs(order.date).format("MMMM D")}</div>
+                      <div>{dayjs(order.orderTimeMs).format("MMMM D")}</div>
                     </div>
                     <div className="order-total">
                       <div className="order-header-label">Total:</div>
@@ -57,10 +60,8 @@ export function OrdersPage({ cart }) {
                             {orderProduct.product.name}
                           </div>
                           <div className="product-delivery-date">
-                            Arriving on:{" "}
-                            {dayjs(orderProduct.estimatedDeliveryTimeMs).format(
-                              "MMMM D"
-                            )}
+                            Arriving on:{dayjs(orderProduct.estimatedDeliveryTimeMs).format(
+                              "MMMM D" )}
                           </div>
                           <div className="product-quantity">
                             Quantity: {orderProduct.quantity}
@@ -77,11 +78,11 @@ export function OrdersPage({ cart }) {
                         </div>
 
                         <div className="product-actions">
-                          <a to="/tracking">
+                          <Link to={`/tracking/${order.id}/${orderProduct.productId}`}>
                             <button className="track-package-button button-secondary">
                               Track package
                             </button>
-                          </a>
+                          </Link>
                         </div>
                       </Fragment>
                     );

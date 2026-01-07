@@ -10,6 +10,7 @@ const [products, setProducts] = useState([]);
     const getHomeData = async () => {
     const response = await axios.get("/api/products");
       setProducts(response.data);
+
     };
     getHomeData();
   },[]); 
