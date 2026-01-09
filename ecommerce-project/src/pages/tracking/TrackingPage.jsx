@@ -2,8 +2,7 @@ import axios from "axios";
 import { useEffect, useState, Fragment } from "react";
 import { Header } from "../../components/Header";
 import dayjs from "dayjs";
-import { Link, useParams } from "react-router";
-
+import { useParams } from "react-router";
 import "./TrackingPage.css";
 
 export function TrackingPage({ cart }) {
@@ -46,7 +45,7 @@ export function TrackingPage({ cart }) {
   return (
     <>
       <title>Tracking Page</title>
-      <Link rel="icon" type="image/svg+xml" href="tracking-favicon.png"></Link>
+      <link rel="icon" type="image/svg+xml" href="/tracking-favicon.png"></link>
       <Header cart={cart} />
 
       <div className="tracking-page">

@@ -34,9 +34,6 @@ export function Header({ cart }) {
           <div className="cart-quantity">{ totalQuantity }</div>
           <div className="cart-text">Cart</div>
         </Link>
-        <Link  className="orders-link header-link" to="/tracking">
-          <span className="orders-text">Tracking</span>
-        </Link>
       </div>
     </div>
   );
