@@ -1,6 +1,6 @@
 import { CartItemDetails } from "./cartItemDetails";
 
-export function OrderSummary({ cart, deliveryOptions }) {
+export function OrderSummary({ cart, deliveryOptions, loadCart }) {
   return (
     <div className="order-summary">
       {deliveryOptions.length > 0 &&
@@ -13,7 +13,11 @@ export function OrderSummary({ cart, deliveryOptions }) {
           return (
             <div key={cartItem.productId} className="cart-item-container">
               <div>
-                <CartItemDetails cartItem={cartItem} deliveryOptions={deliveryOptions} selectedDeliveryOption={selectedDeliveryOption} />
+                <CartItemDetails 
+                cartItem={cartItem} 
+                deliveryOptions={deliveryOptions} 
+                selectedDeliveryOption={selectedDeliveryOption}
+                loadCart={loadCart} />
               </div>
 
             </div>

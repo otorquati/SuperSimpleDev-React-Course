@@ -1,7 +1,7 @@
 import { formatMoney } from "../../utils/money";
 import { DeliveryDate } from "./deliveryDate";
 import { DeliveryOptions } from "./DeliveryOptions";
-export function CartItemDetails({ cartItem, deliveryOptions, selectedDeliveryOption }) {
+export function CartItemDetails({ cartItem, deliveryOptions, selectedDeliveryOption, loadCart }) {
   return (
     <>
         <DeliveryDate selectedDeliveryOption={selectedDeliveryOption} />
@@ -26,6 +26,7 @@ export function CartItemDetails({ cartItem, deliveryOptions, selectedDeliveryOpt
         <DeliveryOptions
           deliveryOptions={deliveryOptions}
           cartItem={cartItem}
+          loadCart={loadCart}
         />
       </div>
     </>
