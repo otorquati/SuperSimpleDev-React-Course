@@ -1,3 +1,5 @@
+import { DeliveryOptions } from "./DeliveryOptions";
+import dayjs from "dayjs";
 import { CartItemDetails } from "./cartItemDetails";
 
 export function OrderSummary({ cart, deliveryOptions, loadCart }) {
@@ -8,18 +10,23 @@ export function OrderSummary({ cart, deliveryOptions, loadCart }) {
           const selectedDeliveryOption = deliveryOptions.find(
             (deliveryOption) => {
               return deliveryOption.id === cartItem.deliveryOptionId;
-            }
-          );
+            });
+
           return (
             <div key={cartItem.productId} className="cart-item-container">
-              <div>
+              <div className="delivery-date">
+                Delivery date: {dayjs(selectedDeliveryOption.estimatedDeliveryTime).format("MMMM D, YYYY")}
+              </div>
+              <div className="cart-item-details-grid">
                 <CartItemDetails 
                 cartItem={cartItem} 
-                deliveryOptions={deliveryOptions} 
-                selectedDeliveryOption={selectedDeliveryOption}
                 loadCart={loadCart} />
+                <DeliveryOptions
+                  deliveryOptions={deliveryOptions}
+                  cartItem={cartItem}
+                  loadCart={loadCart}
+                />
               </div>
-
             </div>
           );
         })}
