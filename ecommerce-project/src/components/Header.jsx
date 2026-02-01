@@ -1,9 +1,24 @@
 import "./header.css";
-import { Link } from "react-router";
+import { useState } from "react";
+import { Link, useNavigate, useSearchParams } from "react-router";
 
 export function Header({ cart }) {
+  const navigate = useNavigate();
+  const [searchParams] = useSearchParams();
+  const searchText = searchParams.get("search");
+  const [search, setSearch] = useState(searchText || "");
+
+  const updateSearchInput = (event) => {
+    setSearch(event.target.value);
+  };
+
+  const searchProducts = () => {
+     console.log("Searching for:", search);
+    navigate(`/search?=${search}`);
+  };
+
   let totalQuantity = 0;
- cart.forEach((cartItem) => {
+  cart.forEach((cartItem) => {
     totalQuantity += cartItem.quantity;
   });
 
@@ -17,21 +32,27 @@ export function Header({ cart }) {
       </div>
 
       <div className="middle-section">
-        <input className="search-bar" type="text" placeholder="Search" />
+        <input
+          className="search-bar"
+          type="text"
+          placeholder="Search"
+          value={search}
+          onChange={updateSearchInput}
+        />
 
-        <button className="search-button">
+        <button className="search-button" onClick={searchProducts}>
           <img className="search-icon" src="images/icons/search-icon.png" />
         </button>
       </div>
 
       <div className="right-section">
-        <Link  className="orders-link header-link" to="/orders">
+        <Link className="orders-link header-link" to="/orders">
           <span className="orders-text">Orders</span>
         </Link>
 
         <Link className="cart-link header-link" to="/checkout">
           <img className="cart-icon" src="images/icons/cart-icon.png" />
-          <div className="cart-quantity">{ totalQuantity }</div>
+          <div className="cart-quantity">{totalQuantity}</div>
           <div className="cart-text">Cart</div>
         </Link>
       </div>
