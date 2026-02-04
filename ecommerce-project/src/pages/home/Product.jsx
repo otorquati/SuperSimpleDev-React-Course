@@ -24,7 +24,8 @@ export function Product({ product, loadCart }) {
   return (
     <div key={product.id} className="product-container">
       <div className="product-image-container">
-        <img className="product-image" src={product.image} />
+        // adicionamos o atributo id para realizar o teste da imagem
+        <img className="product-image" data-testid='product-image' src={product.image} />
       </div>
 
       <div className="product-name limit-text-to-2-lines">{product.name}</div>
@@ -32,6 +33,7 @@ export function Product({ product, loadCart }) {
       <div className="product-rating-container">
         <img
           className="product-rating-stars"
+          data-testid="product-rating-stars-img"
           src={`images/ratings/rating-${product.rating.stars * 10}.png`}
         />
         <div className="product-rating-count link-primary">
