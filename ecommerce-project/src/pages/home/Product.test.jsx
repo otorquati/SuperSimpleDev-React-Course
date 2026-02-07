@@ -1,27 +1,44 @@
-import { test, expect, describe, vi } from "vitest";
+import { test, expect, describe, vi, beforeEach } from "vitest";
 import { Product } from "./Product.jsx";
 import userEvent from "@testing-library/user-event";
 import { render, screen } from "@testing-library/react";
 import axios from "axios";
 // Mocka o módulo axios para evitar chamadas reais durante os testes
-vi.mock('axios');
+vi.mock("axios");
 
 describe("Product component", () => {
+  {
+    /* constante para fornecer os dados do produto para os testes, 
+    garantindo que o componente tenha as informações necessárias para 
+    renderizar corretamente */
+  }
+  let product = {}; 
+
+  let loadCart
+
+  {/* 
+    O método beforeEach é executado antes de cada teste, garantindo que o estado
+     do produto e a função loadCart sejam resetados para cada teste, evitando 
+     interferências entre eles.
+    */} 
+beforeEach(() => {
+  product = {
+    id: "e43638ce-6aa0-4b85-b27f-e1d07eb678c6",
+    image: "images/products/athletic-cotton-socks-6-pairs.jpg",
+    name: "Black and Gray Athletic Cotton Socks - 6 Pairs",
+    rating: {
+      stars: 4.5,
+      count: 87,
+    },
+    priceCents: 1090,
+    keywords: ["socks", "sports", "apparel"],
+  };
+    //Cria um mock para a função loadCart, pois não podemos acessar o backend real durante o teste
+  loadCart = vi.fn();
+})
   test("renders product details correctly", () => {
     // constante para fornecer os dados do produto
-    const product = {
-      id: "e43638ce-6aa0-4b85-b27f-e1d07eb678c6",
-      image: "images/products/athletic-cotton-socks-6-pairs.jpg",
-      name: "Black and Gray Athletic Cotton Socks - 6 Pairs",
-      rating: {
-        stars: 4.5,
-        count: 87,
-      },
-      priceCents: 1090,
-      keywords: ["socks", "sports", "apparel"],
-    };
-    //Cria um mock para a função loadCart, pois não podemos acessar o backend real durante o teste
-    const loadCart = vi.fn();
+
     // Método render realiza o teste em um fake website
     render(<Product product={product} loadCart={loadCart} />);
     {
@@ -49,21 +66,6 @@ describe("Product component", () => {
   });
   // Testando a interação do botão "Add to Cart"
   test("calls loadCart function when 'Add to Cart' button is clicked", async () => {
-    const product = {      
-      id: "e43638ce-6aa0-4b85-b27f-e1d07eb678c6",
-      image: "images/products/athletic-cotton-socks-6-pairs.jpg",
-      name: "Black and Gray Athletic Cotton Socks - 6 Pairs",
-      rating: {
-        stars: 4.5,
-        count: 87,
-      },
-      priceCents: 1090,
-      keywords: ["socks", "sports", "apparel"],
-    };
-
-    // Cria um mock para a função loadCart, pois não podemos acessar o backend real durante o teste
-    const loadCart = vi.fn();
-
     //renderiza o componente Product com os dados do produto e a função loadCart mockada
     render(<Product product={product} loadCart={loadCart} />);
 
@@ -73,15 +75,12 @@ describe("Product component", () => {
     await user.click(addToCartButton);
 
     // Verifica se a função axios.post foi chamada com os parâmetros corretos
-    expect(axios.post).toHaveBeenCalledWith(
-      '/api/cart-items',
-      {
-        productId: "e43638ce-6aa0-4b85-b27f-e1d07eb678c6",
-        quantity: 1,
-      }
-    )
-    
+    expect(axios.post).toHaveBeenCalledWith("/api/cart-items", {
+      productId: "e43638ce-6aa0-4b85-b27f-e1d07eb678c6",
+      quantity: 1,
+    });
+
     // Verifica se a função loadCart foi chamada
     expect(loadCart).toHaveBeenCalled();
-    })
+  });
 });
