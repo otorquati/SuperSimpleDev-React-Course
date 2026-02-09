@@ -22,9 +22,10 @@ export function Product({ product, loadCart }) {
           };
 
   return (
-    <div key={product.id} className="product-container">
+    <div key={product.id} className="product-container"
+    data-testid="product-container">
       <div className="product-image-container">
-        // adicionamos o atributo id para realizar o teste da imagem
+        {/*  adicionamos o atributo id para realizar o teste da imagem */}
         <img className="product-image" data-testid='product-image' src={product.image} />
       </div>
 
